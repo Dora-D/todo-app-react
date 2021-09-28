@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
 import bin from "../../assets/img/bin.svg";
 import "./todo-list-item.scss";
