@@ -21,8 +21,9 @@ export const TaskCreator: FC<ITaskCreator> = ({ setTodos }) => {
     setTodos((todos) => [
       ...todos,
       {
-        title: data.title,
         id: createNewTodoId(todos),
+        title: data.title,
+        done: false,
       },
     ]);
     reset();
@@ -31,7 +32,10 @@ export const TaskCreator: FC<ITaskCreator> = ({ setTodos }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="task-creator">
       <div className="task-creator__wrapper">
-        <input {...register("title", { required: true, minLength: 3 })} />
+        <input
+          {...register("title", { required: true, minLength: 3 })}
+          placeholder="Add your new todo"
+        />
         <button type="submit"></button>
       </div>
       {errors.title && <span>The entry must be more than 3 characters</span>}
