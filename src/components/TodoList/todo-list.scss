@@ -2,6 +2,12 @@
   margin: 30px 0;
   height: 250px;
   overflow: auto;
+  & > img {
+    margin: 25px auto;
+    width: 200px;
+    height: 200px;
+    display: block;
+  }
   &::-webkit-scrollbar {
     width: 5px;
   }
