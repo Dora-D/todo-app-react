@@ -1,0 +1,8 @@
+@import "../../assets/sass/veriables.scss";
+@import "../../assets/sass/mixins.scss";
+
+.search-panel {
+  width: 100%;
+  height: 40px;
+  @include input-design;
+}

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { TaskCreator } from "../TaskCreator/TaskCreator";
 import { TodoList } from "../TodoList/TodoList";
 import { TodoListItem } from "../TodoListItem/TodoListItem";
+import { SearchPanel } from "../SearchPanel/SearchPanel";
 
 import { BaseTodos } from "../../static/index";
 import { setTodosToLocalStorage } from "../../utils/setTodosToLocalStorage";
@@ -13,6 +14,7 @@ import "./todo-app.scss";
 
 export const TodoApp = () => {
   const [todos, setTodos] = useState<ITodos[]>(BaseTodos);
+  const [inputSearchTodos, setInputSearchTodos] = useState<string>("");
 
   useEffect(() => {
     setTodosToLocalStorage(todos);
@@ -33,6 +35,16 @@ export const TodoApp = () => {
     );
   };
 
+  const searchTodos = (items: ITodos[], term: string) => {
+    if (term.length === 0) {
+      return items;
+    }
+
+    return items.filter((item) => {
+      return item.title.toLowerCase().indexOf(term.toLowerCase()) > -1;
+    });
+  };
+
   return (
     <div className="todo-app">
       <h1>Todo App</h1>
@@ -41,7 +53,7 @@ export const TodoApp = () => {
         {todos.length === 0 ? (
           <img src={emptyStateIcon} alt="Empty State" />
         ) : (
-          todos.map((todo) => (
+          searchTodos(todos, inputSearchTodos).map((todo) => (
             <TodoListItem
               {...todo}
               onDelete={() => onDelete(todo.id)}
@@ -51,6 +63,10 @@ export const TodoApp = () => {
           ))
         )}
       </TodoList>
+      <SearchPanel
+        inputSearchTodos={inputSearchTodos}
+        setInputSearchTodos={setInputSearchTodos}
+      />
     </div>
   );
 };
