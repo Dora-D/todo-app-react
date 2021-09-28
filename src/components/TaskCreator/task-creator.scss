@@ -9,6 +9,9 @@
       height: 40px;
       width: calc(100% - 45px);
       @include input-design;
+      &.error {
+        border: 2px solid $red-color;
+      }
     }
 
     button {

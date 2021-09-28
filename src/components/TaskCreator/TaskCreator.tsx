@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 
 import { createNewTodoId } from "../../utils/createNewTodoId";
@@ -15,7 +15,9 @@ export const TaskCreator: FC<ITaskCreator> = ({ setTodos }) => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({
+    reValidateMode: "onSubmit",
+  });
 
   const onSubmit = (data: ITodos) => {
     setTodos((todos) => [
@@ -34,6 +36,7 @@ export const TaskCreator: FC<ITaskCreator> = ({ setTodos }) => {
       <div className="task-creator__wrapper">
         <input
           {...register("title", { required: true, minLength: 3 })}
+          className={errors.title ? "error" : ""}
           placeholder="Add your new todo"
         />
         <button type="submit"></button>
