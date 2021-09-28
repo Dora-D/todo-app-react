@@ -1,0 +1,63 @@
+@import "../../assets/sass/veriables.scss";
+
+.task-creator {
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    input {
+      padding: 0 10px;
+      height: 40px;
+      width: calc(100% - 45px);
+      border-radius: 5px;
+      font-size: 1rem;
+      border: 1px solid $border-input-text-color;
+      outline: none;
+      &::placeholder {
+        color: $black-color;
+        font-size: 0.9rem;
+        font-weight: 300;
+      }
+      &:focus {
+        border: 2px solid $black-color;
+      }
+    }
+
+    button {
+      width: 40px;
+      height: 40px;
+      border: none;
+      cursor: pointer;
+      background-color: $black-color;
+      position: relative;
+      &:hover {
+        background-color: lighten($black-color, 15%);
+        transition: all $transition-time;
+      }
+      &::after {
+        content: "";
+        height: 15px;
+        width: 3px;
+        background: $white-color;
+        position: absolute;
+        margin: -7.5px 0 0 -1.5px;
+        left: 50%;
+        top: 50%;
+      }
+      &::before {
+        content: "";
+        height: 3px;
+        width: 15px;
+        background: $white-color;
+        position: absolute;
+        margin: -1.5px 0 0 -7.5px;
+        left: 50%;
+        top: 50%;
+      }
+    }
+  }
+  span {
+    padding: 5px 10px 0;
+    font-size: 0.9rem;
+    color: $red-color;
+  }
+}

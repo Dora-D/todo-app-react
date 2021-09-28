@@ -3,6 +3,9 @@
   height: 50px;
   display: flex;
   align-items: center;
+  h2 {
+    font-size: 2rem;
+  }
   & > h2::before {
     content: "";
     height: 40px;

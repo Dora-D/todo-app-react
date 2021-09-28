@@ -1,0 +1,46 @@
+@import "../../assets/sass/veriables.scss";
+
+.todo-list-item {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  overflow: hidden;
+  border-radius: 5px;
+  color: $card-text-color;
+  background-color: $black-color;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  p {
+    padding: 10px;
+    width: calc(100% - 40px);
+    font-weight: 300;
+    letter-spacing: 0.8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    text-decoration: line-through;
+    &.active {
+      text-decoration: none;
+    }
+  }
+  button {
+    width: 40px;
+    height: 40px;
+    background-color: $red-color;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transform: translateX(100%);
+    transition: transform $transition-time;
+    img {
+      height: 40%;
+      width: 40%;
+    }
+    &.active {
+      transform: translateX(0);
+    }
+  }
+}
