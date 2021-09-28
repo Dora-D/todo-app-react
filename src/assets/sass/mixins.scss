@@ -1,0 +1,15 @@
+@mixin input-design {
+  padding: 0 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  border: 1px solid $border-input-text-color;
+  outline: none;
+  &::placeholder {
+    color: $black-color;
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
+  &:focus {
+    border: 2px solid $black-color;
+  }
+}

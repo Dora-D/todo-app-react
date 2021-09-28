@@ -1,25 +1,14 @@
 @import "../../assets/sass/veriables.scss";
+@import "../../assets/sass/mixins.scss";
 
 .task-creator {
   &__wrapper {
     display: flex;
     justify-content: space-between;
     input {
-      padding: 0 10px;
       height: 40px;
       width: calc(100% - 45px);
-      border-radius: 5px;
-      font-size: 1rem;
-      border: 1px solid $border-input-text-color;
-      outline: none;
-      &::placeholder {
-        color: $black-color;
-        font-size: 0.9rem;
-        font-weight: 300;
-      }
-      &:focus {
-        border: 2px solid $black-color;
-      }
+      @include input-design;
     }
 
     button {
@@ -29,6 +18,7 @@
       cursor: pointer;
       background-color: $black-color;
       position: relative;
+      border-radius: 5px;
       &:hover {
         background-color: lighten($black-color, 15%);
         transition: all $transition-time;
