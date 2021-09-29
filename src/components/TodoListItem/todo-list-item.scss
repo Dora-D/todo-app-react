@@ -1,4 +1,5 @@
 @import "../../assets/sass/veriables.scss";
+@import "../../assets/sass/media.scss";
 
 .todo-list-item {
   height: 40px;
@@ -12,6 +13,9 @@
   &:not(:last-child) {
     margin-bottom: 10px;
   }
+  @include mobile {
+    height: 35px;
+  }
   span {
     padding: 10px;
     width: calc(100% - 40px);
@@ -21,6 +25,9 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     cursor: pointer;
+    @include mobile {
+      font-size: 0.8rem;
+    }
     &.done {
       text-decoration: line-through;
     }
@@ -32,6 +39,10 @@
     border: none;
     outline: none;
     cursor: pointer;
+    @include mobile {
+      height: 35px;
+      width: 35px;
+    }
     img {
       height: 40%;
       width: 40%;

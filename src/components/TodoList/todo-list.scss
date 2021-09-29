@@ -1,12 +1,22 @@
+@import "../../assets/sass/media.scss";
+
 .todo-list {
   margin: 30px 0;
   height: 250px;
   overflow: auto;
+  @include mobile {
+    margin: 20px 0;
+    height: 150px;
+  }
   & > img {
     margin: 50px auto;
     width: 150px;
     height: 150px;
     display: block;
+    @include mobile {
+      height: 100px;
+      margin: 25px auto;
+    }
   }
   &::-webkit-scrollbar {
     width: 5px;

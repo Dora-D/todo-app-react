@@ -1,5 +1,6 @@
 @import "../../assets/sass/veriables.scss";
 @import "../../assets/sass/mixins.scss";
+@import "../../assets/sass/media.scss";
 
 .task-creator {
   &__wrapper {
@@ -22,6 +23,10 @@
       background-color: $black-color;
       position: relative;
       border-radius: 5px;
+      @include mobile {
+        height: 35px;
+        width: 35px;
+      }
       &:hover {
         background-color: lighten($black-color, 15%);
         transition: all $transition-time;
@@ -52,5 +57,8 @@
     padding: 5px 10px 0;
     font-size: 0.9rem;
     color: $red-color;
+    @include mobile {
+      font-size: 0.7rem;
+    }
   }
 }

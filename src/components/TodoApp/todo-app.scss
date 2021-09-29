@@ -1,11 +1,21 @@
+@import "../../assets/sass/media.scss";
+
 .todo-app {
   padding: 30px 20px;
   width: 430px;
   background-color: #fff;
   border-radius: 10px;
-
+  @include mobile {
+    padding: 20px;
+    width: 100%;
+    border-radius: 0px;
+  }
   h1 {
     margin-bottom: 30px;
+    @include mobile {
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
   }
   .item-enter {
     opacity: 0;

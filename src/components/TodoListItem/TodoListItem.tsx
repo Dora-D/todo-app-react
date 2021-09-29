@@ -18,6 +18,11 @@ export const TodoListItem: FC<ITodoListItem> = ({
   onTaskDone,
 }) => {
   const [isButtonShow, setIsButtonShow] = useState<boolean>(false);
+  const windowInnerWidth = window.innerWidth;
+
+  if (windowInnerWidth < 960 && !isButtonShow) {
+    setIsButtonShow(true);
+  }
 
   const onMouseEnter = () => setIsButtonShow(true);
   const onMouseLeave = () => setIsButtonShow(false);
