@@ -15,19 +15,25 @@ export const TaskCreator: FC<ITaskCreator> = ({ setTodos }) => {
     handleSubmit,
     formState: { errors },
     reset,
+    setError,
   } = useForm({
     reValidateMode: "onSubmit",
   });
 
   const onSubmit = (data: ITodos) => {
-    setTodos((todos) => [
-      ...todos,
-      {
-        id: createNewTodoId(todos),
-        title: data.title,
-        done: false,
-      },
-    ]);
+    if (data.title.trim().length < 3) {
+      // setError("title", { type: "minLength" });
+      console.log(errors.title);
+    } else {
+      setTodos((todos) => [
+        ...todos,
+        {
+          id: createNewTodoId(todos),
+          title: data.title,
+          done: false,
+        },
+      ]);
+    }
     reset();
   };
 
@@ -35,7 +41,12 @@ export const TaskCreator: FC<ITaskCreator> = ({ setTodos }) => {
     <form onSubmit={handleSubmit(onSubmit)} className="task-creator">
       <div className="task-creator__wrapper">
         <input
-          {...register("title", { required: true, minLength: 3 })}
+          {...register("title", {
+            required: true,
+            minLength: 3,
+            maxLength: 100,
+            validate: (value) => value.trim().length > 3,
+          })}
           className={errors.title ? "error" : ""}
           placeholder="Add your new todo"
         />
