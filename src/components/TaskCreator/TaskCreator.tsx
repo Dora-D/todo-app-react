@@ -37,7 +37,7 @@ export const TaskCreator: FC<ITaskCreator> = ({ setTodos }) => {
         <input
           {...register("title", {
             maxLength: 100,
-            validate: (value) => value.trim().length > 3,
+            validate: (value) => value.trim().length > 2,
           })}
           className={errors.title ? "error" : ""}
           placeholder="Add your new todo"
