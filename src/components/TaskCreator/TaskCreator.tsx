@@ -15,25 +15,19 @@ export const TaskCreator: FC<ITaskCreator> = ({ setTodos }) => {
     handleSubmit,
     formState: { errors },
     reset,
-    setError,
   } = useForm({
     reValidateMode: "onSubmit",
   });
 
   const onSubmit = (data: ITodos) => {
-    if (data.title.trim().length < 3) {
-      // setError("title", { type: "minLength" });
-      console.log(errors.title);
-    } else {
-      setTodos((todos) => [
-        ...todos,
-        {
-          id: createNewTodoId(todos),
-          title: data.title,
-          done: false,
-        },
-      ]);
-    }
+    setTodos((todos) => [
+      ...todos,
+      {
+        id: createNewTodoId(todos),
+        title: data.title,
+        done: false,
+      },
+    ]);
     reset();
   };
 
@@ -42,8 +36,6 @@ export const TaskCreator: FC<ITaskCreator> = ({ setTodos }) => {
       <div className="task-creator__wrapper">
         <input
           {...register("title", {
-            required: true,
-            minLength: 3,
             maxLength: 100,
             validate: (value) => value.trim().length > 3,
           })}
@@ -52,7 +44,13 @@ export const TaskCreator: FC<ITaskCreator> = ({ setTodos }) => {
         />
         <button type="submit"></button>
       </div>
-      {errors.title && <span>The entry must be more than 3 characters</span>}
+
+      {errors.title?.type === "validate" && (
+        <span>The entry must be more than 3 characters</span>
+      )}
+      {errors.title?.type === "maxLength" && (
+        <span>The entry can't be more than 100 characters</span>
+      )}
     </form>
   );
 };
