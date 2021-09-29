@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import { TaskCreator } from "../TaskCreator/TaskCreator";
 import { TodoList } from "../TodoList/TodoList";
 import { TodoListItem } from "../TodoListItem/TodoListItem";
 import { SearchPanel } from "../SearchPanel/SearchPanel";
 
-import { BaseTodos } from "../../static/index";
+import { BaseTodos } from "../../static";
 import { setTodosToLocalStorage } from "../../utils/setTodosToLocalStorage";
 import { ITodos } from "../../interfaces";
 
@@ -45,22 +46,27 @@ export const TodoApp = () => {
     });
   };
 
+  const renderTodos = searchTodos(todos, inputSearchTodos);
+
   return (
     <div className="todo-app">
       <h1>Todo App</h1>
       <TaskCreator setTodos={setTodos} />
       <TodoList>
-        {todos.length === 0 ? (
+        {renderTodos.length === 0 ? (
           <img src={emptyStateIcon} alt="Empty State" />
         ) : (
-          searchTodos(todos, inputSearchTodos).map((todo) => (
-            <TodoListItem
-              {...todo}
-              onDelete={() => onDelete(todo.id)}
-              onTaskDone={() => onTaskDone(todo.id)}
-              key={todo.id}
-            />
-          ))
+          <TransitionGroup>
+            {renderTodos.map((todo) => (
+              <CSSTransition timeout={300} classNames="item" key={todo.id}>
+                <TodoListItem
+                  {...todo}
+                  onDelete={() => onDelete(todo.id)}
+                  onTaskDone={() => onTaskDone(todo.id)}
+                />
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
         )}
       </TodoList>
       <SearchPanel
